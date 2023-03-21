@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/Somos/somos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/50222cbc2c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/img/logo.ico">
+    <title>Politécnico Braulio Paulino</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/img/logo.svg" class="logoH" alt="Logo del Instituto Politécnico Braulio Paulino">
+            <div class="site-title">Instituto Politécnico <br> Braulio Paulino</div>
+        </div>
+    </header>
+
+    <nav>
+      <ul class="menu-horizontal">
+        <li><a href="/index.html">Inicio</a></li>
+        <li><a>Somos</a>
+          <ul class="menu-vertical">
+            <li><a href="/Somos/Filosofía.html">Filosofía Institucional</a></li>
+            <li><a href="/Somos/Historia.html">Historia</a></li>
+            <li><a href="/Somos/Transparencia.html">Transparencia</a></li>
+            <li><a href="/Somos/Plan-de-Responsabilidad.html">Plan de Responsabilidad Social</a></li>
+            <li><a href="/Somos/Politica-de-calidad.html">Política de Calidad</a></li>
+            <li><a href="/Somos/Reglamento-interno.html">Reglamento Interno</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Admisiones</a>
+          <ul class="menu-vertical">
+            <li><a href="#">Formulario de Admisión</a></li>
+            <li><a href="#">Documentación para Ingreso</a></li>
+          </ul>
+        </li>
+        <li>
+  
+          <a href="#">Académico</a>
+          <ul class="menu-vertical">
+            <li><a href="#">Oferta</a>
+              <ul class="menu-sub-vertical">
+                <li><a href="/Academico/modalidadg.html">Modalidad General</a></li>
+                <li><a href="/Academico/modalidadt.html">Modalidad Técnica</a></li>
+              </ul>
+            </li>
+            <li><a href="/Academico/actividades.html">Actividades</a></li>
+            <li><a href="/Academico/vinculacionsectorial.html">Vinculación Sectorial</a></li>
+          </ul>
+        </li>
+  
+        <li>
+          <a href="#">Servicios</a>
+          <ul class="menu-vertical">
+            <li><a href="#">Record Académico</a></li>
+            <li><a href="#">Certificados</a></li>
+            <li><a href="#">Solicitar Citas</a></li>
+            <li><a href="#">Atención Primaria</a></li>
+            <li><a href="#">Orientación y Psicología</a></li>
+          </ul>
+        </li>
+        <li><a href="/contactos.html">Contactos</a></li>
+      </ul>
+    </nav>
+
+    <div class="bar">
+        <img src="/Somos/bj.png" alt="">
+        <h1>Reglamento Interno</h1>
+    </div>
+
+    <div id="pdf-viewer">
+        <canvas id="pdf-canvas"></canvas>
+        <div id="pdf-buttons">
+          <button id="prev-page">Anterior</button>
+          <button id="next-page">Siguiente</button>
+        </div>
+        <div>
+          Página <span id="page-num"></span> de <span id="num-pages"></span>
+        </div>
+      </div>
+      
+      
+      <script src="/js/pdf.js"></script>
+      <script src="/js/pdf.worker.js"></script>
+      <script>
+        // Esperar a que el documento HTML esté completamente cargado
+document.addEventListener('DOMContentLoaded', function() {
+  var pdfDoc = null;
+  var pageNum = 1;
+  var pageRendering = false;
+  var pageNumPending = null;
+  var canvas = document.getElementById('pdf-canvas');
+  var ctx = canvas.getContext('2d');
+
+  // Get the PDF and render the first page
+  function renderPage(num) {
+    pageRendering = true;
+    // Using promise to fetch the page
+    pdfDoc.getPage(num).then(function(page) {
+      var viewport = page.getViewport({ scale: 1 });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      // Render PDF page into canvas context
+      var renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      };
+      var renderTask = page.render(renderContext);
+
+      // Wait for rendering to finish
+      renderTask.promise.then(function() {
+        pageRendering = false;
+        if (pageNumPending !== null) {
+          // New page rendering is pending
+          renderPage(pageNumPending);
+          pageNumPending = null;
+        }
+      });
+    });
+
+    // Update page counters
+    document.getElementById('page-num').textContent = pageNum;
+    document.getElementById('num-pages').textContent = pdfDoc.numPages;
+  }
+
+  // Load the PDF
+  pdfjsLib.getDocument('/files/reglas.pdf').promise.then(function(pdfDoc_) {
+    pdfDoc = pdfDoc_;
+    document.getElementById('num-pages').textContent = pdfDoc.numPages;
+    renderPage(pageNum);
+  });
+
+  // Button event listeners
+  document.getElementById('prev-page').addEventListener('click', function() {
+    if (pageNum <= 1) {
+      return;
+    }
+    pageNum--;
+    if (pageRendering) {
+      pageNumPending = pageNum;
+    } else {
+      renderPage(pageNum);
+    }
+  });
+
+  document.getElementById('next-page').addEventListener('click', function() {
+    if (pageNum >= pdfDoc.numPages) {
+      return;
+    }
+    pageNum++;
+    if (pageRendering) {
+      pageNumPending = pageNum;
+    } else {
+      renderPage(pageNum);
+    }
+  });
+});
+
+      </script>
+      
+    <footer>
+
+        <div class="container__footer">
+            <div class="box__footer">
+                <div class="logo">
+                    <img src="/img/logo.svg" width="150px" alt="">
+                </div>
+                <div class="terms">
+                    <h3>Contacto</h3>
+                    <p><b>Teléfono:</b> 809-580-6637</p>
+                    <p><b>Correo:</b> politecnicobrauliopaulino2@gmail.com</p>
+                    <a href="https://goo.gl/maps/ZcXapnh29GCBpb6M9" target="_blank">
+                        <p>Dirección: Carr. Peña 287-191, Tamboril 51000</p>
+                    </a>
+                </div>
+            </div>
+            <div class="box__footer">
+                <h2>Servicios</h2>
+                <a href="#">Record Academico</a>
+                <a href="#">Certificados</a>
+                <a href="#">Solicitar Citas</a>
+                <a href="#">Mapa del Sitio</a>
+            </div>
+
+            <div class="box__footer">
+                <h2>Institución</h2>
+                <a href="#">Filosofía</a>
+                <a href="#">Historia</a>
+                <a href="#">Responsabilidad Social</a>
+                <a href="#">Política de Calidad</a>
+            </div>
+
+            <div class="box__footer">
+                <h2>Redes Sociales</h2>
+                <a href="https://www.facebook.com/pbpofic"><i class="fab fa-facebook-square"></i> Facebook</a>
+                <a href="#"><i class="fab fa-twitter-square"></i> Twitter</a>
+                <a href="https://www.youtube.com/@brauliopaulino1832"><i class="fab fa-youtube"></i> Youtube</a>
+                <a href="https://www.instagram.com/pbpofc/"><i class="fab fa-instagram-square"></i> Instagram</a>
+            </div>
+
+        </div>
+
+        <div class="box__copyright">
+            <hr>
+            <p>Todos los derechos reservados © 2023 <b>Instituto Politécnico Braulio Paulino</b></p>
+        </div>
+    </footer>
+</body>
+
+</html>
