@@ -24,80 +24,74 @@
     </header>
 
     <nav>
-        <ul class="menu-horizontal">
-            <li><a href="/index.html">Inicio</a></li>
-            <li><a>Somos</a>
-                <ul class="menu-vertical">
-                    <li><a href="/Somos/Filosofía.html">Filosofía Institucional</a></li>
-                    <li><a href="/Somos/Historia.html">Historia</a></li>
-                    <li><a href="/Somos/Transparencia.html">Transparencia</a></li>
-                    <li><a href="/Somos/Plan-de-Responsabilidad.html">Plan de Responsabilidad Social</a></li>
-                    <li><a href="/Somos/Politica-de-calidad.html">Política de Calidad</a></li>
-                    <li><a href="/Somos/Reglamento-interno.html">Reglamento Interno</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Admisiones</a>
-                <ul class="menu-vertical">
-                    <li><a href="#">Formulario de Admisión</a></li>
-                    <li><a href="#">Documentación para Ingreso</a></li>
-                </ul>
-            </li>
-            <li>
+		<ul class="menu-horizontal">
+			<li><a href="/index.html">Inicio</a></li>
+			<li><a>Somos</a>
+				<ul class="menu-vertical">
+					<li><a href="/Somos/Filosofía.html">Filosofía Institucional</a></li>
+					<li><a href="/Somos/Historia.html">Historia</a></li>
+					<li><a href="/Somos/Transparencia.html">Transparencia</a></li>
+					<li><a href="/Somos/Plan-de-Responsabilidad.html">Plan de Responsabilidad Social</a></li>
+					<li><a href="/Somos/Politica-de-calidad.html">Política de Calidad</a></li>
+					<li><a href="/Somos/Reglamento-interno.html">Reglamento Interno</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Admisiones</a>
+				<ul class="menu-vertical">
+					<li><a href="/Admision/form.php">Formulario de Admisión</a></li>
+					<li><a href="#">Documentación para Ingreso</a></li>
+				</ul>
+			</li>
+			<li>
 
-                <a href="#">Académico</a>
-                <ul class="menu-vertical">
-                    <li><a href="#">Oferta</a>
-                        <ul class="menu-sub-vertical">
-                            <li><a href="/Academico/modalidadg.html">Modalidad General</a></li>
-                            <li><a href="/Academico/modalidadt.html">Modalidad Técnica</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/Academico/actividades.html">Actividades</a></li>
-                    <li><a href="/Academico/vinculacionsectorial.html">Vinculación Sectorial</a></li>
-                </ul>
-            </li>
+				<a href="#">Académico</a>
+				<ul class="menu-vertical">
+					<li><a href="#">Oferta</a>
+						<ul class="menu-sub-vertical">
+							<li><a href="/Academico/modalidadg.html">Modalidad General</a></li>
+							<li><a href="/Academico/modalidadt.html">Modalidad Técnica</a></li>
+						</ul>
+					</li>
+					<li><a href="/Academico/actividades.html">Actividades</a></li>
+					<li><a href="/Academico/vinculacionsectorial.html">Vinculación Sectorial</a></li>
+				</ul>
+			</li>
 
-            <li>
-                <a href="#">Servicios</a>
-                <ul class="menu-vertical">
-                    <li><a href="#">Record Académico</a></li>
-                    <li><a href="#">Certificados</a></li>
-                    <li><a href="#">Solicitar Citas</a></li>
-                    <li><a href="#">Atención Primaria</a></li>
-                    <li><a href="#">Orientación y Psicología</a></li>
-                </ul>
-            </li>
-            <li><a href="/contactos.html">Contactos</a></li>
-        </ul>
-    </nav>
+			<li>
+				<a href="#">Servicios</a>
+				<ul class="menu-vertical">
+					<li><a href="#">Record Académico</a></li>
+					<li><a href="#">Certificados</a></li>
+					<li><a href="#">Solicitar Citas</a></li>
+					<li><a href="#">Atención Primaria</a></li>
+					<li><a href="#">Orientación y Psicología</a></li>
+				</ul>
+			</li>
+			<li><a href="/contactos.html">Contactos</a></li>
+		</ul>
+	</nav>
 
-    <div class="bar">
-        <img src="/Somos/bj.png" alt="">
-        <h1>Contacto</h1>
+    <div class="container-form">
+        <div class="info-form">
+            <h2>Contáctanos</h2>
+            <p>Puedes comunicarte con nosotros a través de nuestra línea telefónica, escribirnos un correo electrónico o
+                visitarnos en nuestras instalaciones. Nuestro equipo de profesionales está disponible para asesorarte en
+                todo lo que necesites y ofrecerte información detallada sobre nuestros programas académicos, servicios
+                estudiantiles y eventos de la institución.</p>
+            <a href="tel:809-580-6637"><i class="fa fa-phone"></i>(809) 580-6637</a>
+            <a href="mailto:info@politecnicobrauliopaulino.edu.do"><i class="fa fa-envelope"></i>
+                info@politecnicobrauliopaulino.edu.do</a>
+            <a href="https://goo.gl/maps/3vQaDxpT2NyZBmXG6"><i class="fa fa-map-marked"></i> Dirección: Carr. Peña 287-191, Tamboril 51000</a>
+        </div>
+        <form action="#" autocomplete="on">
+            <input type="text" name="nombre" placeholder="Tu Nombre" class="campo">
+            <input type="emal" name="email" placeholder="Tu Email" class="campo">
+            <textarea name="mensaje" placeholder="Tu Mensaje..."></textarea>
+            <input type="submit" name="enviar" value="Enviar Mensaje" class="btn-enviar">
+        </form>
     </div>
 
-    <section class="contact">
-        <h2>Contacto</h2>
-        <form id="contact-form" method="post">
-          <div class="form-group">
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí" required></textarea>
-          </div>
-          <button type="submit">Enviar mensaje</button>
-        </form>
-      </section>
-      
-      
-    
 
     <footer>
 
@@ -146,5 +140,10 @@
             <p>Todos los derechos reservados © 2023 <b>Instituto Politécnico Braulio Paulino</b></p>
         </div>
     </footer>
+
+    <script>(function (d) { var s = d.createElement("script"); s.setAttribute("data-account", "fPbpa3CQ9N"); s.setAttribute("src", "https://cdn.userway.org/widget.js"); (d.body || d.head).appendChild(s); })(document)</script>
+    <noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website
+            accessibility</a></noscript>
+</body>
 
 </html>
